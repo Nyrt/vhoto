@@ -13,7 +13,7 @@ var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.en
 var multer = require("multer");
 var upload = multer({dest: "./uploads"});
 var mongoose = require("mongoose");
-mongoose.connect("mongoUri");
+mongoose.connect(mongoUri);
 var conn = mongoose.connection;
 var smtpConfig = {
     host: 'smtp.gmail.com',
