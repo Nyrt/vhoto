@@ -1,0 +1,77 @@
+  <!-- Actionable buttons for voting on submissions -->
+<script>
+    function getImagePath() {
+      var request = new XMLHttpRequest();
+        request.open("GET", "/random?challenge="+currentChallenge, true);
+        request.onreadystatechange = function() {
+         if(request.readyState == 4 && request.status == 200){
+          if(request.responseText == "N"){
+            document.getElementById("score1").innerHTML = "Not enough images have been uploaded to this challenge yet.";
+            document.getElementById("button1").src ="VhotoLogo-06.png";
+            document.getElementById("button1").onclick=null;
+            document.getElementById("button2").src = "VhotoLogo-06.png";
+            document.getElementById("button2").onclick=null;
+          }else{
+            files = JSON.parse(request.responseText);
+
+            document.getElementById("button1").src = "/" + files[0];
+            document.getElementById("button1").onclick=function(){vote(0);};
+            document.getElementById("button2").src = "/" + files[1];
+            document.getElementById("button2").onclick=function(){vote(1);};
+            document.getElementById("score1").innerHTML = null;
+            document.getElementById("score2").innerHTML = null;
+            document.getElementById("newPair").innerHTML = null;
+          }
+        } 
+      };
+      request.send();
+    }
+  </script>
+  <!-- Image buttons -->
+
+  <div class="votePair">
+    <input type="image" onclick="vote(0)" src="VhotoLogo-06.png"  name="button1" class="btTxt submit" id="button1" width="450" height=a/>
+    <span id="versus">VS</span> <!-- VS -->
+    <input type="image" onclick="vote(1)" src="VhotoLogo-06.png"  name="button2" class="btTxt submit" id="button2" width="450" height=auto/>
+  </div>
+
+  <div id="scores">
+	   <p id="score1"></p>
+	   <p id="score2"></p>
+     <p id="newPair"></p>
+  </div>
+
+
+
+  <!-- Include this in function used to add to scores-->
+  <script type="text/javascript">
+  function vote(image){
+
+  var request = new XMLHttpRequest();
+    request.open("POST", "/vote", true); 
+    request.setRequestHeader("Content-type", "application/json");
+    request.onreadystatechange = function() {
+      if(request.readyState == 4 && request.status == 200){
+
+        var scores = JSON.parse(request.responseText);
+
+        // document.getElementById("score1").innerHTML = "Submission #1 Score: " + scores[image];
+
+        // document.getElementById("score2").innerHTML = "Submission #2 Score: " + scores[(image+1)%2];
+        document.getElementById("button1").onclick = null;
+        document.getElementById("button2").onclick = null;
+
+        document.getElementById("newPair").innerHTML = '<input type="submit" value="New pair" onclick="getImagePath()">';
+        drawTable();
+      } 
+    };
+
+    var id_token = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token;
+
+    var data = {"id_token": id_token, challenge:currentChallenge, "vote": files[image], "other": files[(image+1)%2]};
+
+    request.send(JSON.stringify(data));
+
+    
+  }
+  </script> 

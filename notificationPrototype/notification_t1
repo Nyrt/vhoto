@@ -1,0 +1,60 @@
+<!-- <body.onload="sendEmail()">
+
+	<script>
+		function sendEmail() {
+		EXEC msdb.dbo.sp_send_dbmail  
+		    @profile_name = 'Adventure Works Administrator',  
+		    @recipients = 'conorward01@gmail.com',  
+		    @body = 'The stored procedure finished successfully.',  
+		    @subject = 'Automated Success Message' ;  
+		}
+	</script>
+
+</body> -->
+
+<!-- Gmail API -->
+<!-- <head>
+	import com.google.api.client.repackaged.org.apache.commons.codec.binary.Base64;
+	import com.google.api.services.gmail.Gmail;
+	import com.google.api.services.gmail.model.Message;
+
+</head> -->
+
+<body>
+
+<!--
+Send Message.
+
+@param  {String} userId User's email address. The special value 'me'
+can be used to indicate the authenticated user.
+@param  {String} email RFC 5322 formatted String.
+@param  {Function} callback Function to call when the request is complete.
+-->
+
+<script>
+	var userId = "conorward01@gmail.com";
+	var email = "\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b";
+</script>
+
+<script>
+function sendMessage(userId, email, callback) {
+  // Using the js-base64 library for encoding:
+  // https://www.npmjs.com/package/js-base64
+  var base64EncodedEmail = Base64.encodeURI(email);
+  var request = gapi.client.gmail.users.messages.send({
+    'userId': userId,
+    'resource': {
+      'raw': base64EncodedEmail
+    }
+  });
+  request.execute(callback);
+}
+</script>
+
+<script>
+	function callback() {
+		console.log("hello");
+	}
+</script>
+
+</body>

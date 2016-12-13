@@ -1,0 +1,22 @@
+/* Puts two vote buttons side-by-side */
+
+#button1{
+    width: 300px;
+    height: 40px;
+}
+
+#button2{
+    width: 300px;
+    height: 40px;
+}
+#container{
+    text-align: center;
+}
+
+#scores{
+    text-align: center;
+}
+
+#practice{
+	display:block;
+}

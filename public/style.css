@@ -1,0 +1,135 @@
+/*
+Vhoto
+CSS stylesheet for index.ejs
+Author: Conor Ward
+Help from http://www.w3schools.com/howto/howto_js_topnav.asp
+*/
+
+
+/* Remove margins and padding from the list, and add a dark cyan background color */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #008C83; /* For related colors: http://www.99colors.net/hex/008C83 */
+}
+
+/* Float the list items side by side */
+ul.topnav li {float: left;}
+
+/* Style the links inside the list items */
+ul.topnav li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 40px;
+    font-family: 'fredoka_oneregular';
+}
+
+/* Change background color of links on hover */
+ul.topnav li a :hover {background-color: #555;}
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+ul.topnav li.icon {display: none;}
+
+ul.topnav li#clock {float:right;}
+
+/* 
+NEW TODAY 
+Help from http://www.w3schools.com/howto/howto_js_tabs.asp
+*/
+
+/* Style the list */
+ul.tab {
+    font-family: 'Lato';
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+ul.tab li.logout {
+    float:right;
+}
+
+/* Float the list items side by side */
+ul.tab li {float: left;}
+
+/* Style the links inside the list items */
+ul.tab li a {
+    display: inline-block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.tab li a:hover {background-color: #ddd;}
+
+/* Create an active/current tablink class */
+ul.tab li a:focus, .active {background-color: #ccc;}
+
+
+
+/* Style the tab content */
+.tabcontent {
+    display: none;
+    padding: 6px 12px 200px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+#map
+{ 
+    width: 800px;
+    max-width:none;
+    height: 600px; 
+}
+
+.promptSlider {
+    font-family: 'fredoka_oneregular';
+    font-size: 36pt;
+    color: white;
+    background-color: #008C83;
+    padding: 60px 60px;
+    border-radius: 25px;
+}
+
+#browseChallenges, #currentChallenges, #vote {
+    font-family: 'Lato';
+    text-align: center;
+}
+
+
+#username {
+    font-family: 'Lato';
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+#versus {
+    font-family: 'fredoka_oneregular';
+    font-size: 36pt;
+    color: red;
+    margin-left: 50px; 
+    margin-right: 50px;
+}
+
+.votePair {
+    text-align: center;
+}

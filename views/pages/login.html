@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>Vhoto</title>
+  <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="16117319787-5sabt8orh1djfb26hnq0th7aedi9e8n2.apps.googleusercontent.com">
+</head>
+
+<body>
+
+  <ul class="topnav" id="myTopnav">
+  <li><img src="VhotoLogo-06.png" alt="Vhoto Logo" style="width:133.34px;height:100px;"></li>
+  <li><a href="#home">VHOTO Login</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+  </li>
+</ul>
+
+<div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+    <script>
+      function onSignIn(googleUser) {
+
+        var id_token = googleUser.getAuthResponse().id_token;
+
+        var login = new XMLHttpRequest();
+        login.open("GET", "http://localhost:5000/userProfile?id_token="+id_token, true);
+
+
+        login.onreadystatechange = function() {//Call a function when the state changes.
+          console.log(login.readyState + " " +login.status)
+          if(login.readyState == 4 && login.status == 200) {
+             console.log("logged in as " + login.responseText);
+             window.location ="/";
+          }
+        }
+
+        login.send();
+      };
+
+      
+    </script>
+
+</body>
+</html>

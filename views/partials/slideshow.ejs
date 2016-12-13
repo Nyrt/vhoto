@@ -1,0 +1,42 @@
+   <!-- 
+    Slideshow implemented by DK, with help from http://www.w3schools.com/w3css/w3css_slideshow.asp
+  -->
+
+  <div id="slide" class="w3-content w3-display-container">
+    <img id="mySlides"  src="VhotoLogo-06.png" style="width:100%">
+
+    <!-- nav buttons -->
+    <a class="w3-btn-floating w3-display-left" onclick="plusDivs(-1)">&#10094;</a>
+    <a class="w3-btn-floating w3-display-right" onclick="plusDivs(1)">&#10095;</a>
+  </div>
+
+  <!-- stores all data from server -->
+  <script>
+    function getAllImages() {
+      var request = new XMLHttpRequest();
+        request.open("GET", "/files?challenge="+currentChallenge, true);
+        request.onreadystatechange = function() {
+         if(request.readyState == 4 && request.status == 200){
+          slideshowFiles = JSON.parse(request.responseText);
+          showDivs(slideIndex);
+        } 
+      };
+      request.send();
+    }
+  </script>
+
+  <script>
+  var slideIndex = 1;
+
+  function plusDivs(n) {
+    showDivs(slideIndex += n);
+  }
+
+  function showDivs(n) {
+    if (slideshowFiles != undefined) {
+      if (n >= slideshowFiles.length) {slideIndex = 0}    
+      if (n < 1) {slideIndex = slideshowFiles.length - 1}
+      document.getElementById("mySlides").src = "/" + slideshowFiles[slideIndex];
+     } 
+  }
+  </script>

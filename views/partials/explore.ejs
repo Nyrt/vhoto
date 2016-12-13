@@ -1,0 +1,69 @@
+<!-- This is the partials file for the Explore tab -->
+
+<script async defer type="text/javascript" src="//maps.googleapis.com/maps/api/js?sensor=true&callback=init"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+<!-- <body onload="init()">
+ --><div id="map"></div>
+
+<script>
+	// Global variable declarations
+	var myLat = 0, myLng = 0;
+	var marker;
+	var map;
+	var camera = "smallLogo.png";
+	var randomL = [-0.05,-0.04,-0.03,-0.02];
+
+	 
+	var userPos;
+
+
+	/* main function which calls the various other functions in the program */
+	function init() {
+			getMyLocation();
+	}
+
+	/* get the users location */
+	function getMyLocation() {
+		if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+			navigator.geolocation.getCurrentPosition(function(position) {
+				myLat = position.coords.latitude;
+				myLng = position.coords.longitude;
+				createMap();
+			});
+		} else {
+			alert("Geolocation is not supported by your web browser.  What a shame!");
+		}
+	}
+
+	/* creates the map as well as a marker with an info window at my location */
+	function createMap() {
+	
+
+		userPos = new google.maps.LatLng(myLat, myLng);
+		var randomLoc;
+		var mapOptions = {
+			zoom: 13, // The larger the zoom number, the bigger the zoom
+			center: userPos,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+
+		map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		
+		
+		for(var i = 0; i < randomL.length; i++){
+			randomLoc = new google.maps.LatLng(myLat + randomL[i], myLng + randomL[i]);	
+			marker= new google.maps.Marker({position: randomLoc, map: map, title: "Take photo here!", icon: camera});
+	    	marker.setMap(map);
+		}
+
+		//console.log(myLat, myLng);
+		map.panTo(userPos);
+
+		marker = new google.maps.Marker({position: userPos, map: map, title: "You are here!"});
+	    marker.setMap(map);
+
+	    google.maps.event.trigger(map, 'resize');
+		map.setZoom( map.getZoom() );
+
+	}
+</script>

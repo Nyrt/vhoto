@@ -1,0 +1,73 @@
+<!-- The following code was taken and modified from https://codepen.io/SitePoint/pen/MwNPVq/ -->
+   <div id="clockdiv">
+      <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+      </div>
+      <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+      </div>
+      <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+      </div>
+    </div>
+
+    <script>
+      function getTimeRemaining(endtime) {
+        var t = Date.parse(endtime) - Date.parse(new Date());
+        var seconds = Math.floor((t / 1000) % 60);
+        var minutes = Math.floor((t / 1000 / 60) % 60);
+        var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+        return {
+          'total': t,
+          'hours': hours,
+          'minutes': minutes,
+          'seconds': seconds
+        };
+      }
+
+      function initializeClock(id, endtime) {
+        var clock = document.getElementById(id);
+        var hoursSpan = clock.querySelector('.hours');
+        var minutesSpan = clock.querySelector('.minutes');
+        var secondsSpan = clock.querySelector('.seconds');
+
+        function updateClock() {
+          var t = getTimeRemaining(endtime);
+
+          hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+          minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+          secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+          if (t.total <= 0) {
+            clearInterval(timeinterval);
+          }
+        }
+
+        updateClock();
+        var timeinterval = setInterval(updateClock, 1000);
+      }
+
+      var now = new Date();
+      var currHour = now.getHours();
+      var currMinute = now.getMinutes();
+      var currSecond = now.getSeconds();
+
+
+      if (currHour < 20) {
+          var deadline = new Date();
+          deadline.setHours(20);
+          deadline.setMinutes(0);
+          deadline.setSeconds(0);
+          initializeClock('clockdiv', deadline);
+      }
+   
+    </script>
+
+
+
+
+
+</div>

@@ -1,0 +1,8 @@
+{
+  "name": "Vhoto",
+  "description": "A daily photography competition",
+  "repository": "https://github.com/tuftsdev/comp20-f2016-team16.git",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "keywords": ["node", "express", "static"],
+  "image": "heroku/nodejs"
+}

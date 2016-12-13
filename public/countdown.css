@@ -1,0 +1,41 @@
+
+/* The following code was taken and modified from https://codepen.io/SitePoint/pen/MwNPVq/ */
+
+#clockdiv{
+    font-family: sans-serif;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+    float:right;
+    width: 600px;
+}
+
+#title{
+  color: #000;
+}
+
+#clockdiv > div{
+    float:right;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+    color: #fff;
+
+}
+
+#clockdiv div > span{
+    padding: 15px;
+    border-radius: 3px;
+    background: #00816A;
+    display: inline-block;
+
+}
+
+.smalltext{
+    padding-top: 5px;
+    font-size: 16px;
+}

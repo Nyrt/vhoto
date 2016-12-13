@@ -1,0 +1,28 @@
+<!--photo uploading -->
+  <form action="/upload" id="form1" method="POST" enctype="multipart/form-data">
+    <input type="file" name="photo">
+    <input type="submit" value="submit" onclick='addId()'>
+  </form>
+  <script type="text/javascript">
+  function addId(){
+      var input = $('<input>').attr('type', 'hidden')
+          .attr('name', "id_token")
+          .attr('value', gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().id_token);
+        $('#form1').append($(input));
+        var input = $('<input>').attr('type', 'hidden')
+          .attr('name', "email")
+          .attr('value', gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail());
+        $('#form1').append($(input));
+        var input = $('<input>').attr('type', 'hidden')
+          .attr('name', "name")
+          .attr('value', gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName());
+        $('#form1').append($(input));
+        var input = $('<input>').attr('type', 'hidden')
+          .attr('name', "challenge")
+          .attr('value', uploadChallenge);
+        $('#form1').append($(input));
+
+         getCurrentChallenges();
+      }
+  
+  </script>

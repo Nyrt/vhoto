@@ -1,0 +1,108 @@
+<!--
+Vhoto
+HTML Index/Homepage
+Author: Conor Ward
+Help from http://www.w3schools.com/howto/howto_js_topnav.asp
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+<title>Vhoto Homepage</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+  <!-- <script src=""></script> Include JavaScript -->
+  <link rel="stylesheet" href="style.css" type="text/css" />
+  <!-- <script src=""></script> Include JavaScript -->
+  <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+  <link rel="stylesheet" href="countdown.css" type="text/css" />
+  <link rel="stylesheet" href="index.css" type="text/css">
+  <link rel="stylesheet" href="font_stylesheet.css" type="text/css" charset="utf-8" />
+  <link rel="stylesheet" href="clairehand_stylesheet.css" type="text/css" charset="utf-8" />
+
+
+  <script src="https://apis.google.com/js/platform.js" asyncrr defer></script>
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="16117319787-5sabt8orh1djfb26hnq0th7aedi9e8n2.apps.googleusercontent.com">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+<div>
+</div>
+
+<% include ../partials/header.ejs %>
+
+<!-- BELOW: Help from http://www.w3schools.com/howto/howto_js_tabs.asp -->
+
+<!-- Navbar tabs -->
+<ul class="tab">
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'browseChallenges')" id="defaultOpen">Browse Challenges</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'currentChallenges')">Current Challenges</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'explore')">Explore</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'slideshow')">Slideshow</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'vote')">Vote</a></li>
+  <li><a href="javascript:void(0)" class="tablinks" onclick="openTab(event, 'statistics')">Statistics</a></li>
+  <li class = "logout"><% include ../partials/logout.ejs %></li>
+</ul>
+
+
+<!-- Navbar contents -->
+<div id="browseChallenges" class="tabcontent">
+  <h3>Browse available challenges!</h3>
+    <% include ../partials/prompts.ejs %>
+    <% include ../partials/upload.ejs %>
+</div>
+
+<div id="currentChallenges" class="tabcontent">
+  <h3>View your current challenges!</h3>
+    <% include ../partials/current_challenges.ejs %>
+    <% include ../partials/curr_chall_nav.ejs %>
+</div>
+
+<div id="explore" class="tabcontent">
+  <% include ../partials/explore.ejs %>
+</div>
+
+<div id="slideshow" class="tabcontent">
+  <% include ../partials/slideshow.ejs %>
+</div>
+
+<div id="vote" class="tabcontent">
+  <h3>Click on your favorite image to vote for it!</h3>
+    <% include ../partials/vote.ejs %>
+</div>
+
+<div id="statistics" class="tabcontent">
+  <% include ../partials/statistics.ejs %>
+</div>
+
+
+
+    
+<!-- Navbar behavior -->
+<script>
+function openTab(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+
+</body>
+</html> 
+

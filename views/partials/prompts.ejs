@@ -1,0 +1,58 @@
+<!--
+Posting challenge prompts
+Help from http://www.w3schools.com/js/js_json_intro.asp
+-->
+ 
+<!-- global variable for current challenge -->
+ <script>
+    var uploadChallenge = "";
+ </script>
+
+ <div class="w3-content w3-display-container">
+   <div class="promptSlider">
+	   <div class="prompt">  </div>
+	   <a class="w3-btn-floating w3-display-left" onclick="plusPrompts(-1)">&#10094;</a>
+     <a id="currentPrompt"></a>
+	   <a class="w3-btn-floating w3-display-right" onclick="plusPrompts(1)">&#10095;</a>
+   </div>
+ </div>
+
+    <script>
+
+      var prompts = '{"prompts":["Take the best photo of a flower!", "Take the best photo of a car!", "Take the best photo of an animal!"]}';
+
+
+      //var prompts_size = Object.keys(prompts).length;
+      var obj = JSON.parse(prompts);
+      prompts_size = obj.prompts.length;
+
+      var upload_index = 0;
+
+  //    show first prompt
+
+      var firstPrompt = document.getElementById("currentPrompt");
+      firstPrompt.innerHTML = obj.prompts[upload_index];
+      uploadChallenge = obj.prompts[upload_index];
+
+  //    showPrompts(index);
+
+      function plusPrompts(n) {
+    	showPrompts(upload_index += n);
+
+  		}
+
+	  function showPrompts(n) {
+	    var x = document.getElementById("currentPrompt");
+	    if (n >= prompts_size) {upload_index = 0}    
+	    if (n < 0) {upload_index = prompts_size - 1}
+	  	 x.innerHTML = obj.prompts[upload_index];
+	  	 //obj.prompts[n];
+       uploadChallenge = obj.prompts[upload_index];
+       //update the stats and voting pairs
+
+	  }
+
+    </script>
+
+  
+ </p>

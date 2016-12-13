@@ -1,0 +1,29 @@
+<a href="javascript:void(0)" class="tablinks" onclick="signOut()">Log Out
+   <script>
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                      window.location = "/login";
+                          });
+              }
+
+    function onLoad() {
+      console.log('loaded');
+      gapi.load('auth2', function() {
+        gapi.auth2.init().then(function()
+        {
+          if (!gapi.auth2.getAuthInstance().isSignedIn.get())
+            window.location = "login";
+          else {
+             getCurrentChallenges();
+             showName();
+            // get user info here
+          }
+        });
+      });
+    }
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+
+    </a>

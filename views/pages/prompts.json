@@ -1,0 +1,18 @@
+var prompts = {
+{"Challenges":[
+    {"Take the best photo of a flower!"},
+    {"Take the best photo of a car!"},
+    {"Take the best photo of an animal!"}
+]}
+}
+
+<!-- Link JSON file "prompts.json" which includes sample challenge prompts -->
+
+<script type="text/javascript" language="javascript" src="jquery-1.8.2.min.js"></script>        
+<script type="text/javascript" language="javascript" src="prompts.json"></script> 
+
+<script type="text/javascript">
+   $(document).ready(function(e) {
+         alert(prompts.start.count);
+   });
+</script>

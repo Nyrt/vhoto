@@ -1,0 +1,18 @@
+<ul class="topnav" id="myTopnav">
+  <li><img src="VhotoLogo-06.png" alt="Vhoto Logo" style="width:133.34px;height:100px;"></li>
+  <li><a id="mainTitle">VHOTO</a></li>
+  <li class="icon">
+    <a href="javascript:void(0);" onclick="myFunction()">&#9776;</a>
+  </li>
+  <li id="username">
+  <script>
+  function showName(){
+  	var name = gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getName();
+  	document.getElementById("username").innerHTML="Welcome, " + name + "!";
+
+	}
+  </script>
+  </li>
+  <li id="clock"><% include clock.ejs %></li>
+
+</ul>
