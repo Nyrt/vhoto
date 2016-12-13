@@ -8,11 +8,12 @@ var path    = require("path");
 var bodyParser = require('body-parser');
 var nodemailer = require('nodemailer');
 
+var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/vhoto';
 
 var multer = require("multer");
 var upload = multer({dest: "./uploads"});
 var mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/vhoto");
+mongoose.connect("mongoUri");
 var conn = mongoose.connection;
 var smtpConfig = {
     host: 'smtp.gmail.com',
@@ -26,7 +27,6 @@ var smtpConfig = {
 var transporter = nodemailer.createTransport(smtpConfig);
 
 var gfs;
-var mongoUri = process.env.MONGODB_URI || process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/vhoto';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
   db = databaseConnection;
